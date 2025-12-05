@@ -28,7 +28,7 @@ Our setup is made of three main software components. Let's get to know them.
 
 -   **What it is**: Caddy is a modern "web server" and "reverse proxy". A web server is a program that sends web pages to your browser. A reverse proxy is like a receptionist for your web services. It takes all incoming requests and directs them to the right place.
 -   **Why it's amazing**: Caddy is famous for being easy to set up. It also automatically handles "HTTPS" for you. HTTPS is the technology that provides a secure, encrypted connection to a website (you see a padlock icon in your browser's address bar). Caddy will get and renew the security certificates for you, which can be a complex task with other web servers.
--   **In our setup**: Caddy is the front door to your Open Web UI. When you go to `https://mattopenai.duckdns.org`, you are talking to Caddy. Caddy then forwards your request to the Open Web UI container in a secure and efficient way.
+-   **In our setup**: Caddy is the front door to your Open Web UI. When you go to `https://yourdomain.duckdns.org`, you are talking to Caddy. Caddy then forwards your request to the Open Web UI container in a secure and efficient way.
 
 ## The Blueprint: How It's All Configured
 
@@ -79,7 +79,7 @@ networks: # This is where we define our networks.
 The `Caddyfile` is the configuration file for Caddy. It's designed to be very simple and human-readable. Ours is located at `/etc/caddy/Caddyfile`.
 
 ```caddy
-mattopenai.duckdns.org, 98.53.166.117 { # This tells Caddy to listen for requests for your domain name and IP address.
+yourdomain.duckdns.org, YOUR_PUBLIC_IP { # This tells Caddy to listen for requests for your domain name and IP address.
     reverse_proxy 127.0.0.1:3000 # This is the core instruction. "reverse_proxy" tells Caddy to forward the request to another service. "127.0.0.1:3000" is the address of your Open Web UI container (from Caddy's perspective, it's on the same machine at port 3000).
 }
 ```
@@ -94,7 +94,7 @@ To make Open Web UI useful, you need to connect it to an AI model provider. You 
     *   An API Key is like a password for a service. **Treat it like a password!** Do not share it, do not post it publicly, and do not save it in any public files.
 
 2.  **Configure Open Web UI**:
-    *   Open your web browser and go to `https://mattopenai.duckdns.org`.
+    *   Open your web browser and go to `https://yourdomain.duckdns.org` (replace with your actual domain).
     *   You should see the Open Web UI interface.
     *   Click on the "Settings" or "Admin" area. It might be behind a gear icon or your user profile.
     *   Look for a section related to "Model Providers", "Connections", or "API Settings".
@@ -115,12 +115,12 @@ The `open-webui` and `searxng` containers are connected to a private virtual net
 
 "Port forwarding" is a setting on your home router that directs incoming traffic from the internet to a specific device on your local network.
 
-Imagine your router is a receptionist in an office building. When a visitor arrives (an internet request), they ask for a specific person (a port number). Port forwarding is like giving the receptionist a list of instructions, like "If someone asks for person #80 or #443, send them to Matt's office".
+Imagine your router is a receptionist in an office building. When a visitor arrives (an internet request), they ask for a specific person (a port number). Port forwarding is like giving the receptionist a list of instructions, like "If someone asks for person #80 or #443, send them to your computer's office".
 
 In our case:
 -   **Ports 80 and 443** are the standard ports for web traffic (HTTP and HTTPS).
 -   Your Caddy server is listening on these ports for incoming requests.
--   You need to tell your router to forward all traffic on ports 80 and 443 to the local IP address of the computer running Caddy, which is **10.0.0.115**.
+-   You need to tell your router to forward all traffic on ports 80 and 443 to the local IP address of the computer running Caddy (e.g., **192.168.1.100** - find your actual local IP using `ip addr` or `ipconfig`).
 
 The process for setting up port forwarding is different for every router. You will need to log in to your router's administration page and look for a section called "Port Forwarding", "Virtual Servers", or something similar.
 
@@ -164,6 +164,6 @@ Here is a summary of the steps that were taken to create this setup. You can use
         ```
 
 6.  **Configure Port Forwarding**:
-    *   As described in the "Networking" section, ports 80 and 443 need to be forwarded to the IP address `10.0.0.115` in your router's settings.
+    *   As described in the "Networking" section, ports 80 and 443 need to be forwarded to the local IP address of your server in your router's settings.
 
 And that's it! We hope this detailed guide helps you understand and enjoy your new private AI setup.
