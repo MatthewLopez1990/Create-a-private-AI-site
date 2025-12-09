@@ -8,9 +8,11 @@ Think of this as building your own private, smart assistant, like ChatGPT or Goo
 
 This setup has a few moving parts, and this document will explain each one, what it does, and how they all work together.
 
+**Note on Hardware**: If you do not already have a server, a **Raspberry Pi 5** can be purchased for around **$150**, which can act as a powerful and efficient server gateway for this entire setup.
+
 ## The Building Blocks: What Are the Components?
 
-Our setup is made of three main software components. Let's get to know them.
+Our setup is made of four main components. Let's get to know them.
 
 ### 1. Open Web UI: Your Gateway to AI
 
@@ -29,6 +31,12 @@ Our setup is made of three main software components. Let's get to know them.
 -   **What it is**: Caddy is a modern "web server" and "reverse proxy". A web server is a program that sends web pages to your browser. A reverse proxy is like a receptionist for your web services. It takes all incoming requests and directs them to the right place.
 -   **Why it's amazing**: Caddy is famous for being easy to set up. It also automatically handles "HTTPS" for you. HTTPS is the technology that provides a secure, encrypted connection to a website (you see a padlock icon in your browser's address bar). Caddy will get and renew the security certificates for you, which can be a complex task with other web servers.
 -   **In our setup**: Caddy is the front door to your Open Web UI. When you go to `https://yourdomain.duckdns.org`, you are talking to Caddy. Caddy then forwards your request to the Open Web UI container in a secure and efficient way.
+
+### 4. Groq: The Privacy-First AI Model
+
+-   **What it is**: Groq is the AI model provider that powers the intelligence of this system. While Open Web UI provides the interface, Groq provides the actual "thinking" and text generation.
+-   **Why it's essential**: We have specifically chosen Groq as the default model provider due to its **high standard of privacy**. Unlike many other AI services, Groq ensures that your data is not used for model training, keeping your conversations private and secure. It is also incredibly fast, providing a snappy and responsive user experience.
+-   **In our setup**: You will connect your Open Web UI instance to Groq using a secure API key. This allows you to leverage state-of-the-art AI capabilities while maintaining strict control over your personal data.
 
 ## The Blueprint: How It's All Configured
 
