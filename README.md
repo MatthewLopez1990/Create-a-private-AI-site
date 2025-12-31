@@ -32,10 +32,10 @@ Our setup is made of four main components. Let's get to know them.
 -   **Why it's amazing**: Caddy is famous for being easy to set up. It also automatically handles "HTTPS" for you. HTTPS is the technology that provides a secure, encrypted connection to a website (you see a padlock icon in your browser's address bar). Caddy will get and renew the security certificates for you, which can be a complex task with other web servers.
 -   **In our setup**: Caddy is the front door to your Open Web UI. When you go to `https://yourdomain.duckdns.org`, you are talking to Caddy. Caddy then forwards your request to the Open Web UI container in a secure and efficient way.
 
-### 4. Groq: The Privacy-First AI Model
+### 4. Groq/Fireworks.ai: The Privacy-First AI Model
 
 -   **What it is**: Groq is the AI model provider that powers the intelligence of this system. While Open Web UI provides the interface, Groq provides the actual "thinking" and text generation.
--   **Why it's essential**: We have specifically chosen Groq as the default model provider due to its **high standard of privacy**. Unlike many other AI services, Groq ensures that your data is not used for model training, keeping your conversations private and secure. It is also incredibly fast, providing a snappy and responsive user experience.
+-   **Why it's essential**: We have specifically chosen Groq as the default model provider due to its **high standard of privacy**. Unlike many other AI services, Groq and Fireworks.ai ensure that your data is not used for model training, keeping your conversations private and secure. It is also incredibly fast, providing a snappy and responsive user experience.
 -   **In our setup**: You will connect your Open Web UI instance to Groq using a secure API key. This allows you to leverage state-of-the-art AI capabilities while maintaining strict control over your personal data.
 
 ## The Blueprint: How It's All Configured
@@ -110,7 +110,7 @@ This combination of privacy, speed, and power makes Groq the ideal choice for an
 #### Setting Up Groq with Open Web UI
 
 1.  **Get your API Key**:
-    *   Go to the [Groq website](https://console.groq.com) and sign up for an account if you don't have one.
+    *   Go to the  example: [Groq website](https://console.groq.com) and sign up for an account if you don't have one.
     *   Navigate to the "API Keys" section in your account dashboard.
     *   Create a new API key.
     *   **Important**: An API Key is like a password for a service. **Treat it like a password!** Do not share it, do not post it publicly, and do not save it in any public files.
@@ -126,8 +126,8 @@ This combination of privacy, speed, and power makes Groq the ideal choice for an
     *   Click on the "Settings" or "Admin" area. It might be behind a gear icon or your user profile.
     *   Look for a section related to "Model Providers", "Connections", or "API Settings".
     *   Add a new model provider with the following information:
-        *   **Model Provider URL** (or similar): `https://api.groq.com/openai/v1`
-        *   **API Key**: Copy and paste the API key you got from Groq.
+        *   **Model Provider URL** (or similar): `https://api.groq.com/openai/v1`, or `https://api.fireworks.ai/inference/v1`.
+        *   **API Key**: Copy and paste the API key you got from Groq and or Fireworks.ai.
     *   Save your settings.
 
 Now you should be able to start a new chat and select one of the Groq models to talk to! You'll enjoy fast, private AI inference without worrying about your data being used for training or stored indefinitely.
